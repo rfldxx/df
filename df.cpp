@@ -81,7 +81,7 @@ vector<token> df(vector<token> f) {
         return result;
     }
 
-    // ab* -> adb* abd* +
+    // ab* -> aDb* abD* +
     ADD(df(a))
     ADD(b)
     result.push_back(token{1, '*'});
