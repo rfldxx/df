@@ -19,7 +19,7 @@ vector<token> init(string s) {
 }
 
 ostream& operator << (ostream& out, const token t) {
-    return ( out << "(["[t.is_operation] << t.val << ")]"[t.is_operation] );
+    return ( out  << "(["[t.is_operation] << t.val << ")]"[t.is_operation] );
 }
 
 template<typename T>
