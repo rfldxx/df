@@ -96,11 +96,10 @@ vector<token> df(vector<token> f) {
 }
 
 int main() {
-    auto s = init("ab+c*");
-    cout << s << endl;
-    auto p = s.end()-1;
-
-    st = s.begin();
-
-    cout << "df: " << df(s) << endl;
+    // abc*+d+rk+*: (a+b*c+d)*(r+k)
+    // > df: (a), [D], (b), [D], (c), [*], (b), (c), [D], [*], [+], [+], 
+    //       (d), [D], [+], (r), (k), [+], [*], (a), (b), (c), [*], [+], 
+    //       (d), [+], (r), [D], (k), [D], [+], [*], [+]
+    cout << "df: " << df(init("abc*+d+rk+*")) << endl;
 }
+
