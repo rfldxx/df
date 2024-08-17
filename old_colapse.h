@@ -56,52 +56,37 @@ vector<token> colapse(vector<token> f, bool end = 0) {
     }
 
     // раскрытие
-    p =  a.end()-2;
-    auto a1 = get_arg(p); p--;
-    auto a2 = get_arg(p);
+    #define ARGET(name)                                                 \
+        p =  name.end()-2;                                              \
+        auto name##1 = name##p ? get_arg(p) : vector<token>{}; p--;     \
+        auto name##2 = name##p ? get_arg(p) : vector<token>{};          \
+        vector<token>* name##name[2];                                   \
+        if(name##p) name##name[0] = &name##1, name##name[1] = &name##2; \
+        else        name##name[0] = &name,    name##name[1] = &name;
 
-    p =  b.end()-2;
-    auto b1 = get_arg(p); p--;
-    auto b2 = get_arg(p);
-
+    ARGET(a)
+    ARGET(b)
     
 
     // a1 b *  a2 b *  +
-    #define CRINGE_PART(name1, name2) {                         \
-        auto temp = name1;                                      \
-        temp.insert(temp.end(), name2.begin(), name2.end());    \
-        temp.push_back({1, '*'});                               \
-        ADD(temp);                                              \
+    #define CRINGE_PART(name1, name2) {                             \
+        auto temp = (name1);                                        \
+        temp.insert(temp.end(), (name2).begin(), (name2).end());    \
+        temp.push_back({1, '*'});                                   \
+        ADD(temp);                                                  \
     }
 
-    if( ap && !bp ) {
-        // cout << "AP" <<  endl;
-        CRINGE_PART(a1, b)
-        CRINGE_PART(a2, b)
-        result.push_back({1, '+'});
-    }
-
-    if( !ap && bp ) {
-        // cout << "BP" <<  endl;
-        CRINGE_PART(a, b1)
-        CRINGE_PART(a, b2)
-        result.push_back({1, '+'});
-    }
+    
+    CRINGE_PART(*aa[0], *bb[0])
+    CRINGE_PART(*aa[1], *bb[1])
+    result.push_back({1, '+'});
 
     if( ap && bp ) {
-        // cout << "AP & BP" <<  endl;
-        CRINGE_PART(a1, b1)
-        CRINGE_PART(a2, b1)
-        result.push_back({1, '+'});
-        
-        CRINGE_PART(a1, b2)
-        CRINGE_PART(a2, b2)
+        CRINGE_PART(*aa[0], *bb[1])
+        CRINGE_PART(*aa[1], *bb[0])
         result.push_back({1, '+'});
         result.push_back({1, '+'});
     }
-    // CRINGE_PART(a1, b)
-    // CRINGE_PART(a2, b)
-    // result.push_back({1, '+'});
 
     #undef ADD
     
