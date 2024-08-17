@@ -1,3 +1,6 @@
+#ifndef POLKA
+#define POLKA
+
 #include <iostream>
 #include <vector>
 #include <string>
@@ -72,3 +75,5 @@ vector<token> get_arg( vector<token>::iterator& pos ) {
     return cringe_copy<vector<token>>(pos, neww+1);
 }
 
+
+#endif  // POLKA

@@ -35,6 +35,7 @@ vector<token> df(vector<token> f) {
     ADD(a)
     ADD(df(b))
     result.push_back(token{1, '*'});
+    #undef ADD
 
     result.push_back(token{1, '+'});
     // cout << "@[*]\n  a: " << a << "\n  b: " << b << "\n  >  " << result << endl;

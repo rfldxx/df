@@ -1,7 +1,7 @@
 // печатает польскую нотацию в латехную формулу $a+b$
 
-// #include "polka.h"
-#include "df.h"
+#include "polka.h"
+// #include "df.h"
 
 
 // .second - приоритет операции в этом аргументе
@@ -32,9 +32,7 @@ pair<string, int> latex_helper(vector<token>::iterator p) {
 // опять рекурсия - опять неэфективно (я обленился думать)
 string latex(vector<token> f) { return latex_helper(f.end()-1).first; }
 
-int main() {
-    cout << latex(df(df(init("aaa**")))) << endl;
-// out: (a'' * a + a' * a' + a' * a' + a * a'') * a + (a' * a + a * a') * a' + (a' * a + a * a') * a' + a * a * a''
-
-    cout << latex(df(df(df(init("aaa**"))))) << endl;
-}
+// int main() {
+//     cout << latex(df(df(init("aaa**")))) << endl;
+// // out: (a'' * a + a' * a' + a' * a' + a * a'') * a + (a' * a + a * a') * a' + (a' * a + a * a') * a' + a * a * a''
+// }
